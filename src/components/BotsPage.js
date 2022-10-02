@@ -6,7 +6,7 @@ import BotCard from "./BotCard";
 function BotsPage() {
   //start here with your code for step one
 const[bots, setBots] =useState([])
-const[botArmy, setBotArmy] = useState([])
+const[botsInArmy, setBotsInArmy] = useState([])
 const[selectedBots, setSelectedBots] = useState([])
 
 
@@ -19,16 +19,20 @@ useEffect(() => {
       setSelectedBots(data)
     });
 }, []);
-// console.log(bots)
+  // filter bots in to army by class
+  function getBotInArmyByClass(bot) {
+    return botsInArmy.find(botInArmy=> botInArmy.bot_class === bot.bot_class)
+  }
 
-  // if(!bots) {
-  //   return <h2><em>Loading...</em></h2>
+  // Bots in army
+  // function botsAlreadyInArmy(bot) {
+  //   return Boolean(botsInArmy.find(botInArmy => botInArmy.id === bot.id))
   // }
   
 
   // delete bot
   function removeBotForever(toDelete) {
-    fetch(`"http://localhost:8002/bots"${toDelete.id}`, {
+    fetch(`http://localhost:8002/bots/${toDelete.id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": 'application/json',
@@ -38,7 +42,7 @@ useEffect(() => {
     .then(r => r.json())
     .then(()=>{
       setBots(bots.filter(thisBot => thisBot.id !== toDelete.id))
-      setBotArmy(botArmy.filter(botArmy => botArmy.id !== toDelete.id))
+      setBotsInArmy(botsInArmy.filter(botInArmy => botInArmy.id !== toDelete.id))
     })
   }
 
@@ -49,14 +53,18 @@ useEffect(() => {
         break;
 
           case "enlist-to-army":
-            setBotArmy([...botArmy, bot])
-            setSelectedBots(selectedBots.filter(thisBot => thisBot.id !== bot.id))
+            const botInArmyByClass = getBotInArmyByClass(bot)
+            if(!botInArmyByClass) {
+            setBotsInArmy([...botsInArmy, bot])
+            setSelectedBots(selectedBots.filter(thisBot => thisBot.id !== bot.id))}
+            else{console.log("uhh")}
+            
             break;
 
             case "fire-bot-temporary":
-              setBotArmy(botArmy.filter(currentBot => currentBot.id !== bot.id))
+              setBotsInArmy(botsInArmy.filter(currentBot => currentBot.id !== bot.id))
               setSelectedBots([...selectedBots, bot])
-              break;
+              
     }
   }
 
@@ -67,9 +75,9 @@ useEffect(() => {
 
   return (
     <div>
-      <YourBotArmy  botArmy={getBotList(botArmy)}/>
+      <YourBotArmy  botsInArmy={getBotList(botsInArmy)}/>
       
-      <BotCollection selectedBots={getBotList(selectedBots)} bots={bots}/>
+      <BotCollection selectedBots={getBotList(selectedBots)}/>
       
     </div>
   )

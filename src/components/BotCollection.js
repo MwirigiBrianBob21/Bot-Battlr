@@ -1,6 +1,6 @@
 import React from "react";
 // import BotSpecs from "./BotSpecs"
-import BotCard from "./BotCard"
+// import BotCard from "./BotCard"
 
 function BotCollection({selectedBots}) {
   // Your code here
