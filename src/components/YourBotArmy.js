@@ -1,12 +1,15 @@
 import React from "react";
-// import { useEffect } from "react/cjs/react.production.min";
+import { useEffect } from "react/cjs/react.production.min";
 import BotCard from "./BotCard";
 
-function YourBotArmy({botArmy, onAddBot}) {
+function YourBotArmy({botArmy}) {
   //your bot army code here...
-  // const[]
-
   
+  console.log(botArmy)
+// useEffect(()=>{
+//   // onAddBot(botArmy)
+// }, [])
+
 
   
 
