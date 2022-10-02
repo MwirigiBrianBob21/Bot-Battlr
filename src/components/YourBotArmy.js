@@ -2,25 +2,19 @@ import React from "react";
 import { useEffect } from "react/cjs/react.production.min";
 import BotCard from "./BotCard";
 
-function YourBotArmy({botArmy}) {
+
+function YourBotArmy({botsInArmy}) {
   //your bot army code here...
   
-  console.log(botArmy)
-// useEffect(()=>{
-//   // onAddBot(botArmy)
-// }, [])
-
-
-  
-
+  console.log(botsInArmy)
   return (
     <div className="ui segment inverted olive bot-army">
       <div className="ui five column grid">
         <div className="row bot-army-row">
-          {/*...and here...*/}
-          Your Bot Army
-          {botArmy.map((bot)=> <BotCard key={bot.id} bot={bot}/>
-        )}
+          {botsInArmy}
+         
+          <h2>Bot Army</h2>
+          
         </div>
       </div>
     </div>
