@@ -27,9 +27,10 @@ function BotsPage() {
     );
   }
 
-  // Bots in army
+  // Handle bots already enlisted
+  // Return a Boolean to have unique key
   function botsAlreadyInArmy(bot) {
-    return (botsInArmy.find(botInArmy => botInArmy.id === bot.id));
+    return Boolean(botsInArmy.find(botInArmy => botInArmy.id === bot.id));
   }
 
   // delete bot
@@ -64,7 +65,7 @@ function BotsPage() {
             selectedBots.filter(thisBot => thisBot.id !== bot.id)
           )
         } else {
-          alert("uhh");
+          alert("Already was in army");
         }
         break;
 
