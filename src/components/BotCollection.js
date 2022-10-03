@@ -1,16 +1,9 @@
 import React from "react";
-// import BotSpecs from "./BotSpecs"
-// import BotCard from "./BotCard"
 
-function BotCollection({selectedBots}) {
-  // Your code here
-  
-
+function BotCollection({ selectedBots }) {
   return (
     <div className="ui four column grid">
-      <div className="row">
-        {selectedBots}
-      </div>
+      <div className="row">{selectedBots}</div>
     </div>
   );
 }

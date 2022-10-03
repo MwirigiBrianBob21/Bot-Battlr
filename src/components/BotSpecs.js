@@ -52,18 +52,16 @@ function BotSpecs({ bot, botsAlreadyInArmy, handleBotAction }) {
             </div>
             <button
               className="ui button fluid"
-              onClick={() => handleBotAction(bot, "show-all-bots") 
-              }
+              onClick={() => handleBotAction(bot, "show-all-bots")}
             >
               Go Back
-              
             </button>
             <button
               className="ui button fluid"
-              onClick={() => botsAlreadyInArmy ? handleBotAction(bot, "fire-bot-temporary") : handleBotAction(bot, "enlist-to-army")
-                // console.log(
-                //   "connect this to a function that adds this bot to your bot army list"
-                // )
+              onClick={() =>
+                botsAlreadyInArmy
+                  ? handleBotAction(bot, "fire-bot-temporary")
+                  : handleBotAction(bot, "enlist-to-army")
               }
             >
               {/* Enlist */}
